@@ -1,3 +1,5 @@
+[![PlatformIO CI](https://github.com/muwerk/example-blink/workflows/PlatformIO%20CI/badge.svg)](https://github.com/muwerk/example-blink/actions)
+
 Led example
 ===========
 
