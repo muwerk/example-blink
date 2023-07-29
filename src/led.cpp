@@ -16,14 +16,18 @@
 
 void appLoop();
 
-#if USTD_FEATURE_MEMORY < USTD_FEATURE_MEM_8K
+#if USTD_FEATURE_MEMORY < USTD_FEATURE_MEM_2K
 ustd::Scheduler sched(2, 2, 2);
+#else
+#if USTD_FEATURE_MEMORY < USTD_FEATURE_MEM_8K
+ustd::Scheduler sched(4, 4, 8);
 #else
 ustd::Scheduler sched(10, 16, 32);
 #endif
+#endif
 
-ustd::LIGHT_CLASS led1("myLed1", MB_LED1, false);
-ustd::LIGHT_CLASS led2("myLed2", MB_LED2, false);
+ustd::LIGHT_CLASS led1("myLed1", MB_LED1, true);
+ustd::LIGHT_CLASS led2("myLed2", MB_LED2, true);
 
 void setup() {
 #ifdef USE_SERIAL_DBG
