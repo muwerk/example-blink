@@ -86,19 +86,29 @@ Build and program with:
 pio run -e attiny -t upload
 ```
 
-### Arduino Uno Rev 3
+### The Original Arduinos: Uno Rev 3, Nano, Mega, Adafruit Pro Trinket 3
 
 <img src="Resources/ArduinoUnoR3Breadboard.png" align="right" width="35%"/>
 
-The Arduino Uno Rev 3 with it's 32k Flash and 2k RAM is the smallest MCU that actually can make
-use of multiple tasks and the light mupplet that creates two independent light effects on the two leds of this project.
+The Arduino Uno Rev 3, Nano, and Pro Trinket 3 ([deprecated by Adafruit](https://www.adafruit.com/product/2010)) with their 32k Flash and 2k RAM are the smallest MCUs that actually can make use of multiple tasks and the light mupplet that creates two independent light effects on the two leds of this project.
 
-Connect two leds via $330\Omega$ resistors to pin 5 and 6. (Note: the internal led at pin 13 has no PWM support, so it can't show the wave effect. If you choose to use the internal led at pin 13, it will simply blink). Modify `platformio.ini`, definitions for `MB_LED1` and `MB_LED2` to change pins.
+Note for the Pro Tinket: according to Adafruit (see deprecation note above), the programming interface is unreliable with modern, faster computers. Best results were achieved by trying to program just after a reset of the chip.
+
+The mega has more storage, but runs the same setup too.
+
+Connect two leds via $330\Omega$ resistors to pin 5 and 6 (marked D5, D6 on the Nano). (Note: the internal led at pin 13 has no PWM support, so it can't show the wave effect. If you choose to use the internal led at pin 13, it will simply blink). Modify `platformio.ini`, definitions for `MB_LED1` and `MB_LED2` to change pins.
 
 Build and run with:
 
 ```bash
+# For uno
 pio run -e uno -t upload
+# For nano
+pio run -e nano -t upload
+# For mega
+pio run -e mega -t upload
+# For Adafruit Pro Trinket 3V (execute this just after a reset of the trinket)
+pio run -e protrinket3 -t upload
 ```
 
 ## Documentation and References
