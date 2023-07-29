@@ -1,6 +1,8 @@
 Led example
 ===========
 
+<img src="Resources/leds.gif" align="right">
+
 A simple example demonstrating muwerk's scheduler and two blinking leds.
 
 This showcases are very simple application of muwerk's [scheduler](https://github.com/muwerk/muwerk): let two leds blink and use the light mupplet
