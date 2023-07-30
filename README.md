@@ -113,6 +113,58 @@ pio run -e mega -t upload
 pio run -e protrinket3 -t upload
 ```
 
+### STM32 ARM cortex MCUs: various Bluepills and Blackpills
+
+> **Note:** There are many, many variants of STM32 boards that are sometimes marketed
+> under same or similar names while using different chip variants. If the `board`
+> specification in `platformio.ini` is even slightly wrong, things **won't work**. The
+> programming will work just fine, but internal hardware differences will prevent even
+> led-blink examples from working!
+
+#### ST Nucleo F103RB
+
+<img src="Resources/NucleoBreadboard.jpg" align="right" width="25%">
+
+The easiest way to start is with ST Nucleo boards: they have an STlink programmer build into the 
+development board: the (removable) left side of the board is the programmer, and the right side 
+is the MCU with Arduino Uno style connectors.
+
+When using a different Nucleo board, be sure to adapt the `platformio.ini` definition 
+`board = nucleo_f103rb`. The example uses pins D5 and D6 (see `platformio.ini`: `MB_LED1=D5 -D MB_LED2=D6`).
+
+Connect the board via USB and programm with:
+
+```bash
+pio run -e nucleo_f103 -t upload
+```
+
+#### Bluepills and Blackpills
+
+<img src="Resources/STM32chip.jpg" align="right" width="25%">
+There are several different variants of 'blue-' and 'blackpill' STM32 boards available. They divide
+into two major categories, 'blue': ST32F10x boards, based on Cortex M0 MCU and 'black' ST32F4xx boards based
+on Cortex M4 cores. Once you get such a board check the imprint on the MCU chip to get the _precise_ name
+of the chip used. Our example image shows a `STM32F103C8`. Use this together with 
+[platformio's board list](https://docs.platformio.org/en/latest/boards/index.html#st-stm32) to identify
+the `board` entry for `platformio.ini`.
+
+Next step is the programmer. You'll need an STlink v2 programmer. Again there are hundreds of different clones
+of this programmer type. While most of them seem to share a similar 2x4 pin connector, the connector layout
+differs among the different clones! So make sure that you get a programmer that has at least a documented pin-layout:
+
+<img src="Resources/STlinkv2.jpg" width="90%">
+
+From the blue- or blackpill connect the four vertical programmer connectors to your STlinkv2: `GND`, `SWSCK`, 
+`SWDIO` and `3V3` need to be interconnected.
+
+Then connect the USB-port of the STlinkv2 to your computer and program with:
+
+```bash
+# Bluepill STM32F103C8, Leds connected to A6, A7 (not all ports support PWM!)
+pio run -e bluepill -t upload
+
+```
+
 ## Documentation and References
 
 * [muwerk scheduler and messaging](https://github.com/muwerk/muwerk)
