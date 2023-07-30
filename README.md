@@ -5,7 +5,7 @@ Led example
 
 <img src="Resources/leds.gif" align="right">
 
-A simple example demonstrating muwerk's scheduler and two blinking leds.
+A simple example demonstrating [`muwerk`](https://github.com/muwerk/muwerk)'s scheduler and two blinking leds using a variety of hardware boards ranging from ATtiny single chip MCUs up to powerful ARM, RISC-V and Espressif network enabled boards.
 
 This showcases are very simple application of muwerk's [scheduler](https://github.com/muwerk/muwerk): let two leds blink and use the light mupplet
 to animate two leds. Mupplets use the scheduler to execute driver functionality in the background, in our case
@@ -33,21 +33,23 @@ After the build completes, it should show something like:
 ```
 Environment    Status    Duration
 -------------  --------  ------------
-d1_mini        SUCCESS   00:00:03.117
-esp32          SUCCESS   00:00:02.931
-esp32c3        SUCCESS   00:00:02.341
-protrinket3    SUCCESS   00:00:00.538
-uno            SUCCESS   00:00:00.533
+attiny         SUCCESS   00:00:00.376
+uno            SUCCESS   00:00:00.558
 nano           SUCCESS   00:00:00.547
-mega           SUCCESS   00:00:00.552
-attiny         SUCCESS   00:00:00.396
-bluepill       SUCCESS   00:00:02.002
-blackpill_411  SUCCESS   00:00:02.330
-blackpill_401  SUCCESS   00:00:02.247
-maixbit        SUCCESS   00:00:01.216
-featherm0      SUCCESS   00:00:00.981
-nrf52          SUCCESS   00:00:01.842
-==== 14 succeeded in 00:00:21.574 ===
+protrinket3    SUCCESS   00:00:00.551
+mega           SUCCESS   00:00:00.547
+nucleo_f103    SUCCESS   00:00:01.990
+bluepill       SUCCESS   00:00:02.018
+blackpill_401  SUCCESS   00:00:02.285
+blackpill_411  SUCCESS   00:00:02.254
+featherm0      SUCCESS   00:00:00.992
+featherm4      SUCCESS   00:00:00.986
+nrf52          SUCCESS   00:00:00.544
+maixbit        SUCCESS   00:00:01.165
+d1_mini        SUCCESS   00:00:03.077
+esp32          SUCCESS   00:00:02.961
+esp32c3        SUCCESS   00:00:02.332
+=== 16 succeeded in 00:00:23.186 ====
 ```
 
 You can select a specific board via `-e <environment>`, e.g. `pio run -e attiny` would only build
@@ -163,6 +165,74 @@ pio run -e blackpill_401 -t upload
 # Blackpill STM32F411CE, leds connected to A6, A7
 pio run -e blackpill_411 -t upload
 ```
+
+### Atmel SAM with Adafruit's feathers
+
+Using Adafruit's feather boards have significant advantages: integrated programmer, standardized board
+and periphery layout and most of all: excellent documentation.
+
+#### Adafruit Feather M0 with cortex m0
+
+<img src="Resources/featherm0.jpg" align="right" width="30%">
+
+There are different Feather m0 boards with different kinds of extension hardware. For the purpose of this led demo, any will do.
+
+The image shows the [Adafruit Feather M0 with RFM69 Radio](https://learn.adafruit.com/adafruit-feather-m0-radio-with-rfm69-packet-radio/using-the-rfm69-radio). The radio is not used in this demo.
+
+Connect two leds (via $330\Omega$ resistors) to pins 9 and 10 of the feather board.
+
+Connect the feather board via USB to your computer, and program with:
+
+```bash
+pio run -e featherm0 -t upload
+```
+
+#### Adafruit Feather M4 Express
+
+<img src="https://cdn-learn.adafruit.com/guides/cropped_images/000/002/093/medium640/thumb.jpg?1531009748" align="right" width="25%">
+
+The [Adafruit Feather M4 Express](https://learn.adafruit.com/adafruit-feather-m4-express-atsamd51) uses the Atmel SAMD51 chip based on Cortex M4. For our purposes
+it's pin-compatible with the M0 above:
+
+Connect two leds (via $330\Omega$ resistors) to pins 9 and 10 of the feather board.
+
+Connect the feather board via USB to your computer, and program with:
+
+```bash
+pio run -e featherm4 -t upload
+```
+
+### Nordic NRF52 with Adafruit Feather
+
+#### Adafruit nRF52832 Bluetooth Feather
+
+A variant of Cortex M4 by Nordic.
+
+Connect two leds (via $330\Omega$ resistors) to pins 11 and 31 of the feather board.
+
+Connect the feather board via USB to your computer, and program with:
+
+```bash
+pio run -e featherm4 -t upload
+```
+
+### RISC-V boards
+
+<img src="Resources/MaixBitBreadboard.jpg" align="right" width="30%">
+
+#### Sipeed Maix Bit
+
+A board based on the Kendryte K210 RISC-V dual core 64bit 400 Mhz.
+
+Connect two leds (via $330\Omega$ resistors) to pins 7 and 8 of the feather board.
+
+Connect the board via USB to your computer, and program with:
+
+```bash
+pio run -e maixbit -t upload
+```
+
+
 
 ## Documentation and References
 
