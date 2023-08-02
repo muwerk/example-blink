@@ -3,3 +3,7 @@
 data/net.json
 data/mqtt.json
 .DS_Store
+*~
+\#*\#
+.cache/
+compile_commands.json
